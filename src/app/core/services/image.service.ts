@@ -1,25 +1,31 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Image } from '../models/image.model';
+import { PicsumService } from './picsum.service';
+import { AppConfigService } from './app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  private baseUrl = "https://picsum.photos";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private picsumService: PicsumService,
+    private appConfigService: AppConfigService) {}
+  
+  getImages(number: number) {
+    const images: Image[] = [];
 
-  getImage(id: number, size: {width: number, height?: number}) {
-    const imageUrl = this.getImageUrl(id, size);
-    return this.http.get(imageUrl, {responseType: "blob"});
+    for (let index = 1; index <= number; index++) {
+      images.push({
+        id: index,
+        photo: this.getImageUrl(index),
+        text: `This is the image number ${index}`
+      });
+    }
+    return images;
   }
 
-  private getImageUrl(id: number, size: {width: number, height?: number}) {
-    let imageUrl = `${this.baseUrl}/id/${id}/${size.width}`;
-
-    if (typeof size.height === 'number') {
-      imageUrl += `/${size.height}`;
-    }
-    return imageUrl;
+  private getImageUrl(imageId: number) {
+    return this.picsumService.getImageUrl(imageId, this.appConfigService.defaultImageSize);
   }
 }
