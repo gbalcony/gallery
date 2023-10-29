@@ -1,0 +1,9 @@
+<div class="content" role="main">
+    <div class="card-container">
+        <img
+            *ngFor="let image of images"
+            id="{{image.id}}"
+            src="{{image.photo}}"
+            alt="{{image.text}}">
+    </div>
+</div>
