@@ -1,9 +1,13 @@
 <div class="content" role="main">
     <div class="card-container">
-        <img
-            *ngFor="let image of images"
-            id="{{image.id}}"
-            src="{{image.photo}}"
-            alt="{{image.text}}">
+        <ul class="list">
+            <cdk-virtual-scroll-viewport style="height: 500px" itemSize="500" class="viewport">
+                <ng-container *cdkVirtualFor="let image of images">
+                    <li>
+                        <img id="{{image.id}}" src="{{image.photo}}" alt="{{image.text}}">
+                    </li>
+                </ng-container>
+            </cdk-virtual-scroll-viewport>
+        </ul>
     </div>
 </div>

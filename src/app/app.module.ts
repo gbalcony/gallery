@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { AppRoutingRoutingModule } from './app-routing.module';
 import { GalleryComponent } from './features/gallery/gallery.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { GalleryComponent } from './features/gallery/gallery.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingRoutingModule
+    AppRoutingRoutingModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
