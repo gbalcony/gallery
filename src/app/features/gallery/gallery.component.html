@@ -1,8 +1,9 @@
 <div class="content" role="main">
+    <app-search-bar #searchBar></app-search-bar>
     <div class="card-container">
         <ul class="list">
             <cdk-virtual-scroll-viewport style="height: 500px" itemSize="500" class="viewport">
-                <ng-container *cdkVirtualFor="let image of images">
+                <ng-container *cdkVirtualFor="let image of images | searchFilter: searchBar.searchText">
                     <li>
                         <img id="{{image.id}}" src="{{image.photo}}" alt="{{image.text}}">
                     </li>
