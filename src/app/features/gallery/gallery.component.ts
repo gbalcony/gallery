@@ -19,10 +19,6 @@ export class GalleryComponent implements OnInit {
     this.setImages();
   }
 
-  onNewSearch(search: string) {
-    
-  }
-
   private setImages() {
     this.images = this.imageService.getImages(this.appConfigService.defaultNumberOfImages);
   }
